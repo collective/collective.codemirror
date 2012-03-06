@@ -156,8 +156,12 @@ to <a href="document_src">view or download</a> the current source.
       var scriptEditCodeMirror = CodeMirror.fromTextArea(myTextArea, {
         value: myTextArea.value,
         mode: 'python',
-        lineNumbers: true // I'd love to make this true, but a bug pops up
+        lineNumbers: true
       });
+      var error_lines = <dtml-var expr="error_lines">;
+      for (var i=0; i<error_lines.length;i++) {
+        scriptEditCodeMirror.setMarker(error_lines[i]-1, "<span style=\"color: #900\">●</span> %N%");
+      }
     };
     function inject_css(uri, onload) {
       var head = document.getElementsByTagName('head')[0],
@@ -188,5 +192,4 @@ to <a href="document_src">view or download</a> the current source.
   })();
 
 </script>
-<dtml-var expr="repr(errors)" html_quote>
 <dtml-var manage_page_footer>
