@@ -1,3 +1,7 @@
+#CodeMirrorLoadedFlag {
+  height: 1px;
+}
+
 .CodeMirror {
   line-height: 1em;
   font-family: monospace;
