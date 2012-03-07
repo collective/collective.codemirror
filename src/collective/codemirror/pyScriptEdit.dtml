@@ -147,49 +147,15 @@ to <a href="document_src">view or download</a> the current source.
 </tr>
 </table>
 </form>
-<div id="CodeMirrorLoadedFlag"></div>
-<script src="&dtml-BASEPATH1;/++resource++codemirror/codemirror-compressed.js"></script>
 <script>
-  (function() {
-    var convert_textarea = function(){
-      var myTextArea = document.getElementsByTagName('textarea')[0];
-      var scriptEditCodeMirror = CodeMirror.fromTextArea(myTextArea, {
-        value: myTextArea.value,
-        mode: 'python',
-        lineNumbers: true
-      });
-      var error_lines = <dtml-var expr="error_lines">;
-      for (var i=0; i<error_lines.length;i++) {
-        scriptEditCodeMirror.setMarker(error_lines[i]-1, "<span style=\"color: #900\">●</span> %N%");
-      }
-    };
-    function inject_css(uri, onload) {
-      var head = document.getElementsByTagName('head')[0],
-        style = document.createElement('link');
-      style.rel = 'stylesheet';
-      style.type = 'text/css';
-      style.href = uri;
-      style.onload = style.onreadystatechange = onload;
-      head.appendChild(style);
-    }
-
-    function cssOnload(id, callback) {
-      setTimeout(function listener(){
-        var el = document.getElementById(id),
-            comp = el.currentStyle || getComputedStyle(el, null);
-        if ( comp.height === "1px" )
-          callback();
-        else
-          setTimeout(listener, 50);
-      }, 50)
-    }
-
-    // Inject codemirror stylesheet in HEAD
-    var base_codemirror_uri = "&dtml-BASEPATH1;/++resource++codemirror";
-    inject_css("&dtml-BASEPATH1;/++resource++codemirror/lib/codemirror.css");
-    inject_css(base_codemirror_uri + "/theme/elegant.css");
-    cssOnload('CodeMirrorLoadedFlag', convert_textarea);
-  })();
-
+document.getElementsByTagName('textarea')[0].className += ' codemirror-python';
+document.getElementsByTagName('textarea')[0].onCodeMirrorLoad = function(cm) { 
+  var error_lines = <dtml-var expr="error_lines">;
+  for (var i=0; i<error_lines.length;i++) {
+    cm.setMarker(error_lines[i]-1, "<span style=\"color: #900\">●</span> %N%");
+  }
+};
 </script>
+<script src="&dtml-BASEPATH1;/++resource++codemirror/codemirror-compressed.js"></script>
+<script src="&dtml-BASEPATH1;/++resource++codemirror/convertTextAreas.js"></script>
 <dtml-var manage_page_footer>

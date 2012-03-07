@@ -33,7 +33,9 @@
   padding: .4em;
 }
 
-.CodeMirror pre {
+.CodeMirror pre,
+#content .CodeMirror pre {
+  color: black;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   -o-border-radius: 0;
@@ -46,10 +48,12 @@
   word-wrap: normal;
 }
 
+#content .CodeMirror-wrap pre,
 .CodeMirror-wrap pre {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
+
 .CodeMirror-wrap .CodeMirror-scroll {
   overflow-x: hidden;
 }
@@ -58,6 +62,11 @@
   outline: none !important;
 }
 
+#content .CodeMirror pre.CodeMirror-cursor {
+  line-height: 1em;
+}
+
+#content .CodeMirror pre.CodeMirror-cursor,
 .CodeMirror pre.CodeMirror-cursor {
   z-index: 10;
   position: absolute;
@@ -66,7 +75,9 @@
   border-right:none;
   width:0;
 }
+#content .CodeMirror pre.CodeMirror-cursor.CodeMirror-overwrite,
 .CodeMirror pre.CodeMirror-cursor.CodeMirror-overwrite {}
+#content .CodeMirror-focused pre.CodeMirror-cursor,
 .CodeMirror-focused pre.CodeMirror-cursor {
   visibility: visible;
 }
