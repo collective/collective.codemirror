@@ -18,10 +18,14 @@ if (document.getElementsByClassName == undefined) {
 
 (function() {
   var convert_textarea = function(area){
+
     var cm = CodeMirror.fromTextArea(area, {
       value: area.value,
       mode: 'python',
-      lineNumbers: true
+      lineNumbers: true,
+      extraKeys: {
+        "Ctrl-S": area.onCodeMirrorSave || function() {}
+      }
     });
     if (area.onCodeMirrorLoad) {
       area.onCodeMirrorLoad(cm);
