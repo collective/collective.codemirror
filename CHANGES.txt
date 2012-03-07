@@ -4,5 +4,4 @@ Changelog
 0.1dev (unreleased)
 -------------------
 
-- Package created using zopeskel
-  []
+- Inital implementation: monkey patch Zope to use codemirror in the ZMI

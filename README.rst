@@ -3,8 +3,15 @@
 Introduction
 ============
 
-Monkey patch Zope PythonScript ZMI edit form to use CodeMirror.
+CodeMirror is a JavaScript library that provides features commonly found in IDEs
+(like syntax highlighting and smart indent) to browser-based editors.
+This product monkey patches Zope PythonScript ZMI edit form to use CodeMirror.
 
+Aim
+===
+
+This product exists as a proposal of a feature addition to Zope itself: the author
+thinks textareas are too uncomfortable for developers to edit their code.
 
 Extending
 =========
