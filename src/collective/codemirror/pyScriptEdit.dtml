@@ -158,10 +158,13 @@ document.getElementsByTagName('textarea')[0].onCodeMirrorLoad = function(cm) {
   for (var i=0; i<error_lines.length;i++) {
     cm.setMarker(error_lines[i]-1, "<span style=\"color: #900\">●</span> %N%");
   }
-  // bind ctrl-s
-  cm.saveFunction = function() {
-    alert('saved');
-  }
+  // restore cursor position if a 'codemirror-cursor-position' is available
+  <dtml-if "REQUEST.get('codemirror-cursor-position')">
+  var line = <dtml-var expr="REQUEST.get('codemirror-cursor-position').split('-')[0]">;
+  var ch = <dtml-var expr="REQUEST.get('codemirror-cursor-position').split('-')[1]">;
+  cm.focus();
+  cm.setCursor({line:line, ch:ch});
+  </dtml-if>
 };
 </script>
 <script src="&dtml-BASEPATH1;/++resource++codemirror/codemirror-compressed.js"></script>

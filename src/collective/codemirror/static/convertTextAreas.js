@@ -18,13 +18,22 @@ if (document.getElementsByClassName == undefined) {
 
 (function() {
   var convert_textarea = function(area){
+    var cursor_form_element = document.createElement('input');
+    cursor_form_element.type = 'hidden';
+    cursor_form_element.name = 'codemirror-cursor-position';
+    area.form.appendChild(cursor_form_element);
 
     var cm = CodeMirror.fromTextArea(area, {
       value: area.value,
       mode: 'python',
       lineNumbers: true,
+      matchBrackets: true,
       extraKeys: {
         "Ctrl-S": area.onCodeMirrorSave || function() {}
+      },
+      onCursorActivity: function() {
+        var pos = cm.getCursor();
+        cursor_form_element.value = '' + pos.line + '-' + pos.ch;
       }
     });
     if (area.onCodeMirrorLoad) {
