@@ -1,4 +1,5 @@
 if (document.getElementsByClassName == undefined) {
+  // IE compatibility (to be honest this whole product was never tested in IE)
   document.getElementsByClassName = function(className)
   {
     var hasClassName = new RegExp("(?:^|\\s)" + className + "(?:$|\\s)");
