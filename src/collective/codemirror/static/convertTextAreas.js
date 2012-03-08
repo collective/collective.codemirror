@@ -29,6 +29,7 @@ if (document.getElementsByClassName == undefined) {
       mode: 'python',
       lineNumbers: true,
       matchBrackets: true,
+      lineWrapping: true,
       extraKeys: {
         "Ctrl-S": area.onCodeMirrorSave || function() {}
       },
