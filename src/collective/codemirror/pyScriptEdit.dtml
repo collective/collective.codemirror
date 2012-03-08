@@ -154,7 +154,7 @@ document.getElementsByTagName('textarea')[0].onCodeMirrorSave = function() {
 };
 document.getElementsByTagName('textarea')[0].onCodeMirrorLoad = function(cm) {
   // Mark lines with errors
-  var error_lines = <dtml-var expr="error_lines">;
+  var error_lines = <dtml-var expr="getattr(context, 'error_lines', '[]')">;
   for (var i=0; i<error_lines.length;i++) {
     cm.setMarker(error_lines[i]-1, "<span style=\"color: #900\">●</span> %N%");
   }
