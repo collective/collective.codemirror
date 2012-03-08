@@ -6,7 +6,7 @@ Introduction
 CodeMirror is a JavaScript library that provides features commonly found in IDEs
 (like syntax highlighting and smart indent) to browser-based editors.
 This product monkey patches Zope PythonScript ZMI edit form to use CodeMirror.
-It was tested in Chrome and Firefox.
+It was tested in Chrome, Firefox and IE 9.
 
 Aim
 ===
