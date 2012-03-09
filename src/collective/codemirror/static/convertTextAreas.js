@@ -91,7 +91,6 @@ if (document.getElementsByClassName == undefined) {
     document.body.appendChild(marker);
     var base_codemirror_uri = "/++resource++codemirror";
     inject_css(base_codemirror_uri + "/lib/codemirror.css");
-    inject_css(base_codemirror_uri + "/theme/elegant.css");
     if (window.jQuery) {
       // check if some textareas are good to be converted
       jQuery("#plominoagent-base-edit #archetypes-fieldname-Content textarea").addClass('codemirror-python');
