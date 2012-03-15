@@ -24,7 +24,7 @@ if (document.getElementsByClassName == undefined) {
   var set_cookie_status = function(status) {
     setCookie('ccm_enabled', status, 10, '/');
   };
-  var convert_textarea = function(area){
+  var convert_textarea = function(area, mode){
     // Create a form element that will submit the current cursor position
     // This is useful to show the cursor in the same position after save
     var cursor_form_element = document.createElement('input');
@@ -59,7 +59,7 @@ if (document.getElementsByClassName == undefined) {
     var enable = function() {
       cm = CodeMirror.fromTextArea(area, {
         value: area.value,
-        mode: 'python',
+        mode: mode,
         lineNumbers: true,
         matchBrackets: true,
         lineWrapping: true,
@@ -114,7 +114,11 @@ if (document.getElementsByClassName == undefined) {
   function convert_textareas() {
     var areas = document.getElementsByClassName("codemirror-python");
     for (var i = areas.length - 1; i >= 0; i--) {
-      convert_textarea(areas[i]);
+      convert_textarea(areas[i], 'python');
+    };
+    var areas = document.getElementsByClassName("codemirror-zpt");
+    for (var i = areas.length - 1; i >= 0; i--) {
+      convert_textarea(areas[i], 'xml');
     };
   }
   bodyOnLoad(function() {
