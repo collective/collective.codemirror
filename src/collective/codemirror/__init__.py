@@ -1,5 +1,8 @@
 from App.special_dtml import DTMLFile
-import json
+try:
+    import simplejson as json
+except ImportError:
+    import json
 import re
 
 def initialize(context):
