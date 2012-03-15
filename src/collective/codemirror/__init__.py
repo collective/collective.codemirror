@@ -1,9 +1,11 @@
 from App.special_dtml import DTMLFile
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
 import json
 import re
 
 def initialize(context):
     patch_pythonscripts()
+    patch_zpt()
 
 def patch_pythonscripts():
     import Products.PythonScripts
@@ -20,3 +22,10 @@ def patch_pythonscripts():
         self.error_lines = json.dumps(error_numbers)
         return res
     PythonScript._compile = _compile
+
+def patch_zpt():
+    import Products.PageTemplates
+    ZopePageTemplate = Products.PageTemplates.ZopePageTemplate.ZopePageTemplate
+    ZopePageTemplate.pt_editForm = PageTemplateFile('ptEdit', globals(), __name__='pt_editForm')
+    ZopePageTemplate.pt_editForm._owner = None
+    ZopePageTemplate.pt_editForm = ZopePageTemplate.manage_main = ZopePageTemplate.pt_editForm
