@@ -89,6 +89,7 @@
   <dtml-else>
   <textarea name="body:text" wrap="off" cols="&dtml-cols;"
   </dtml-if>
+            data-codemirror-mode="python"
             rows="&dtml-rows;">&dtml-body;</textarea>
   </dtml-let>
   </div>

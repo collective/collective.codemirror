@@ -56,10 +56,11 @@ if (document.getElementsByClassName == undefined) {
 
     area.parentNode.insertBefore(toggle_span, area)
     var cm; // enable and disable both need to access this var
+    var mode = area.getAttribute("data-codemirror-mode") || {name: 'xml', htmlMode: true};
     var enable = function() {
       cm = CodeMirror.fromTextArea(area, {
         value: area.value,
-        mode: 'python',
+        mode: mode,
         lineNumbers: true,
         matchBrackets: true,
         lineWrapping: true,
