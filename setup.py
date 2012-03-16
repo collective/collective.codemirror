@@ -3,6 +3,13 @@ import os
 
 version = '0.1'
 
+try:
+  import json
+  REQUIRES_JSON = False
+except ImportError:
+  REQUIRES_JSON = True
+
+
 long_description = (
     open('README.rst').read()
     + '\n' +
@@ -36,7 +43,7 @@ setup(name='collective.codemirror',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-      ],
+      ] + ['simplejson'] * REQUIRES_JSON,
       entry_points="""
       # -*- Entry points: -*-
 
