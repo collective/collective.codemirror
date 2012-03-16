@@ -132,7 +132,7 @@ context</a> to view or download the current text.</p>
 <script tal:define="json python:here.get_codemirror_json(request)"
         tal:content="structure string:var codemirror_python_data=${json}"></script>
 <script>
-document.getElementsByTagName('textarea')[0].className += ' codemirror-python';
+document.getElementsByTagName('textarea')[0].className += ' codemirror-zpt';
 document.getElementsByTagName('textarea')[0].onCodeMirrorSave = function() {
   document.getElementById('textarea-save-button').click(); 
 };
