@@ -25,7 +25,7 @@ def patch_pythonscripts():
 
 def patch_zpt():
     import Products.PageTemplates
-    ZopePageTemplate = Products.PageTemplates.ZopePageTemplate.ZopePageTemplate
-    ZopePageTemplate.pt_editForm = PageTemplateFile('ptEdit', globals(), __name__='pt_editForm')
-    ZopePageTemplate.pt_editForm._owner = None
-    ZopePageTemplate.pt_editForm = ZopePageTemplate.manage_main = ZopePageTemplate.pt_editForm
+    ZPT = Products.PageTemplates.ZopePageTemplate.ZopePageTemplate
+    pt = PageTemplateFile('ptEdit', globals(), __name__='pt_editForm')
+    pt._owner = None
+    ZPT.pt_editForm = ZPT.manage_main = ZPT.manage = ZPT.pt_editForm = pt
