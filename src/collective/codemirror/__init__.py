@@ -8,6 +8,19 @@ import re
 def initialize(context):
     patch_pythonscripts()
 
+def _cursor_position(request):
+    cursor_position = request.get('codemirror-cursor-position', None)
+    if cursor_position:
+        return {
+            'cursor_position': True,
+            'line': int(cursor_position.split('-')[0]),
+            'ch': int(cursor_position.split('-')[1]),
+        }
+    else:
+        return {
+            'cursor_position': False,
+        }
+
 def patch_pythonscripts():
     import Products.PythonScripts
     PythonScript = Products.PythonScripts.PythonScript.PythonScript
@@ -15,11 +28,13 @@ def patch_pythonscripts():
     PythonScript.manage = PythonScript.manage_main = ZPythonScriptHTML_editForm
     PythonScript.ZPythonScriptHTML_editForm =ZPythonScriptHTML_editForm
     original_compile = PythonScript._compile
-    def _compile (self):
-        "Patch to provide an error_lines json string to codemirror"
-        res = original_compile(self)
-        error_numbers = [int(re.sub(r'.*line ([0-9]+)\).*',r'\1',error)) for error in self.errors
-                         if re.match(r'.*line ([0-9]+)\).*', error)]
-        self.error_lines = json.dumps(error_numbers)
-        return res
-    PythonScript._compile = _compile
+    def get_codemirror_json(self, request):
+        error_lines = [int(re.sub(r'.*line ([0-9]+)\).*',r'\1',error))
+                       for error in self.errors
+                       if re.match(r'.*line ([0-9]+)\).*', error)]
+        data = {
+            'error_lines': error_lines,
+        }
+        data.update(_cursor_position(request))
+        return json.dumps(data)
+    PythonScript.get_codemirror_json = get_codemirror_json
