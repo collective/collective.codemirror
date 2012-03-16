@@ -52,7 +52,7 @@
     </td>
   </tr>
 
-  <tr tal:define="warnings context/pt_warnings" tal:condition="warnings">
+  <tr tal:define="warnings context/pt_warnings|nothing" tal:condition="warnings">
     <td align="left" valign="middle" class="form-label">Warnings</td>
     <td align="left" valign="middle" style="background-color: #FFEEDD"
         colspan="3">
