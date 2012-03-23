@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1'
+version = '0.2'
 
 try:
   import json
@@ -33,7 +33,7 @@ setup(name='collective.codemirror',
       keywords='',
       author='',
       author_email='',
-      url='http://svn.plone.org/svn/collective/',
+      url='http://github.com/collective/collective.codemirror',
       license='gpl',
       packages=find_packages('src'),
       package_dir = {'': 'src'},

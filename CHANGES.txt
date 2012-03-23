@@ -1,7 +1,14 @@
 Changelog
 =========
 
-0.1dev (unreleased)
+0.2dev (unreleased)
 -------------------
 
-- Inital implementation: monkey patch Zope to use codemirror in the ZMI
+
+
+0.1 - 2012-03-23
+----------------
+
+- Fix compatibility with Zope 2.12 [alex-morega]
+
+- Inital implementation: monkey patch Zope to use codemirror in the ZMI [silviot]
