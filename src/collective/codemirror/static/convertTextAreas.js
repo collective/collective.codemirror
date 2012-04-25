@@ -66,7 +66,30 @@ if (document.getElementsByClassName == undefined) {
         matchBrackets: true,
         lineWrapping: true,
         extraKeys: {
-          "Ctrl-S": area.onCodeMirrorSave || function() {}
+          "Ctrl-S": area.onCodeMirrorSave || function() {},
+          "F11": function() {
+              var scroller = cm.getScrollerElement();
+              if (scroller.className.search(/\bCodeMirror-fullscreen\b/) === -1) {
+                scroller.className += " CodeMirror-fullscreen";
+                scroller.style.height = "100%";
+                scroller.style.width = "100%";
+                cm.refresh();
+              } else {
+                scroller.className = scroller.className.replace(" CodeMirror-fullscreen", "");
+                scroller.style.height = '';
+                scroller.style.width = '';
+                cm.refresh();
+              }
+            },
+            "Esc": function() {
+              var scroller = cm.getScrollerElement();
+              if (scroller.className.search(/\bCodeMirror-fullscreen\b/) !== -1) {
+                scroller.className = scroller.className.replace(" CodeMirror-fullscreen", "");
+                scroller.style.height = '';
+                scroller.style.width = '';
+                cm.refresh();
+              }
+            }
         },
         onCursorActivity: function() {
           var pos = cm.getCursor();
@@ -135,10 +158,6 @@ if (document.getElementsByClassName == undefined) {
     document.body.appendChild(marker);
     var base_codemirror_uri = "/++resource++codemirror";
     inject_css(base_codemirror_uri + "/lib/codemirror.css");
-    if (window.jQuery) {
-      // check if some textareas are good to be converted
-      jQuery("#plominoagent-base-edit #archetypes-fieldname-Content textarea").addClass('codemirror-python');
-    }
     cssOnload('CodeMirrorLoadedFlag', convert_textareas);
   });
 })();
