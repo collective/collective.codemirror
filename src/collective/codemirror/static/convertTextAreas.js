@@ -61,6 +61,7 @@ if (document.getElementsByClassName == undefined) {
       cm = CodeMirror.fromTextArea(area, {
         value: area.value,
         mode: mode,
+        indentUnit: 4,
         lineNumbers: true,
         matchBrackets: true,
         lineWrapping: true,
