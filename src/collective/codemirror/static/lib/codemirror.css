@@ -43,10 +43,13 @@
   border-radius: 0;
   border-width: 0; margin: 0; padding: 0; background: transparent;
   font-family: inherit;
-  font-size: 120%;
   padding: 0; margin: 0;
   white-space: pre;
   word-wrap: normal;
+}
+
+#content .CodeMirror pre {
+  font-size: 120%;
 }
 
 #content .CodeMirror-wrap pre,
